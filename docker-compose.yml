@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  backend:
+    build: ./backend
+    image: backend
+    container_name: backend_container
+    ports:
+      - "3031:3031"
+    environment:
+      TZ: "Asia/Tokyo"
+
+  frontend:
+    build: ./frontend
+    image: frontend
+    container_name: frontend_container
+    links:
+      - backend
+    ports:
+      - "80:80"
+    environment:
+      TZ: "Asia/Tokyo"
